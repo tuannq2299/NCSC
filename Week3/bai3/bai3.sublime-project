@@ -1,0 +1,15 @@
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "settings": {
+        "xdebug": {
+        	"port":9003,
+             "url": "https://localhost/bai3/home.php",
+        }
+    }
+}

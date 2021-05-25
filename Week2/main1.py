@@ -15,6 +15,8 @@ from pyfiglet import Figlet
 @click.option("--favorite" ,flag_value='favorite', help="Hiển thị title các exploit người dùng đánh dấu .")
 
 def welcome(page_num,exploit_id,favorite):
+	f = Figlet(font='slant')
+	print(f.renderText('___ExploitDB___'))
 	if page_num:
 		sendRequest(page_num)
 		printTable(page_num)
@@ -31,9 +33,7 @@ def welcome(page_num,exploit_id,favorite):
 					data = json.loads(data)
 					data = data[0]["Plugin danh dau"]
 					print(f"Danh sach plugin da danh dau: {data}")
-	if not page_num and not exploit_id:
-		f = Figlet(font='slant')
-		print(f.renderText('___ExploitDB___'))
+	if not page_num and not exploit_id and not favorite:
 		with open("info.json","r") as f:
 			temp = f.read()
 			temp = json.loads(temp)
@@ -69,7 +69,7 @@ def welcome(page_num,exploit_id,favorite):
 		elif data[0] == "exit":
 			raise SystemExit()
 		elif data[0] == "help":
-			temp = "exploit_id [EDB-ID]: Trả về giao diện chi tiết exploit\npage_num [num]: Trả về giao diện danh sách các exploits trong page đó\nfavorite: Trả về giao diện hiển thị title các exploit người dùng đánh dấu\nhelp: Trả về usage\nNone: Giao dien Welcome"
+			temp = "exploit_id [EDB-ID]: Trả về giao diện chi tiết exploit\npage_num [num]: Trả về giao diện danh sách các exploits trong page đó\nfavorite [EDB-ID]: Đánh dấu plugin\nfavorite list: Hiển thị danh sách plugin đã đánh dấu\nhelp: Trả về usage\nexit: Thoát chương trình\n"
 			print(temp)
 		else:
 			print("Wrong cmd! Use help!")
